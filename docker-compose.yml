@@ -1,0 +1,56 @@
+version: "3"
+networks:
+    seab:
+services:
+    server:
+        image: wadholm/pattern:server
+        container_name: "server-container"
+        env_file:
+          - .env-server
+        ports:
+            - "1337:1337"
+        networks:
+            seab:
+    admin:
+        image: xlsson/pattern-admin:latest
+        container_name: "admin-container"
+        ports:
+            - "3000:3000"
+        networks:
+            seab:
+    customer-app:
+        image: rist19/pattern-customerapp:latest
+        container_name: "customer-app-container"
+        env_file:
+          - .env-customer-app
+        ports:
+            - "3001:3001"
+        networks:
+            seab:
+    customer-web:
+        image: rist19/pattern-customerwebbinterface:latest
+        container_name: "customer-web-container"
+        env_file:
+          - .env-customer-web
+        ports:
+            - "3002:3002"
+        networks:
+            seab:
+    sim:
+        image: anau17/simulering:latest
+        container_name: "sim-container"
+        env_file:
+          - .env-bike
+        networks:
+            seab:
+        links:
+            - "server:servercontainer"
+    bike:
+        image: anau17/bikeprogram:latest
+        container_name: "bike-container"
+        env_file:
+          - .env-bike
+        networks:
+            seab:
+        links:
+            - "server:server-container"
