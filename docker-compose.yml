@@ -18,6 +18,8 @@ services:
             - "3000:3000"
         networks:
             seab:
+        depends_on:
+          - "server"
     customer-app:
         image: rist19/pattern-customerapp:latest
         container_name: "customer-app-container"
@@ -27,6 +29,8 @@ services:
             - "3001:3001"
         networks:
             seab:
+        depends_on:
+          - "server"
     customer-web:
         image: rist19/pattern-customerwebbinterface:latest
         container_name: "customer-web-container"
@@ -36,6 +40,8 @@ services:
             - "3002:3002"
         networks:
             seab:
+        depends_on:
+          - "server"
     sim:
         image: anau17/simulering:latest
         container_name: "sim-container"
@@ -44,7 +50,7 @@ services:
         networks:
             seab:
         links:
-            - "server:servercontainer"
+            - "server:server-container"
     bike:
         image: anau17/bikeprogram:latest
         container_name: "bike-container"
