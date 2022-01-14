@@ -25,7 +25,7 @@ Command:                            Starts:                  At:
 docker-compose up -d server         Server                   localhost:1337
 docker-compose up -d admin          Admin interface          localhost:3000
 docker-compose up -d customer-app   Customer app             localhost:3001
-docker-compose up -d customer-web   Customer web interface   localhost:3001
+docker-compose up -d customer-web   Customer web interface   localhost:3002
 docker-compose run bike             Bike program CLI         Command line
 docker-compose run sim              Simulation CLI           Command line
 ```
